@@ -37,14 +37,18 @@
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             };
-            return $http({
+            /*return $http({
                 method: "GET",
                 headers: headers,
                 url: 'http://browsenpm.org/package.json'
                 //data: {"email":"my@email.com","password":"secret"}
+            })*/
+            return $q(function (resolve, reject) {
+                resolve({"data": "This is response", "status": 200});
             })
                 .then(getSchedulesComplete)
                 .catch(getSchedulesFailed);
+
 
             function getSchedulesComplete(response) {
                 //TODO real data, set lastScheduleDate only when everything is success

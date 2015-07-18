@@ -10,7 +10,7 @@
  		</div>
 	</ion-nav-title>
 	<ion-nav-buttons side="right">
-		<div title="Filters" class="pts prm" ng-click="showFilers()">
+		<div title="Filters" class="pts prm" ng-click="showFilters()">
 			<span class="icon-utility-filter active--icon-1 text-color-5 f1"></span>
 		</div>
 	</ion-nav-buttons>
@@ -19,16 +19,16 @@
 		<div class="cb"></div>
 		<h1 class="text-color-1 f2 mam">Activities</h1>
 		<ion-list> 
-			<ion-item class="mam bg-1 border border--3 pam brm ng-isolate-scope" ng-repeat="item in activities" ng-href="#/activit/view/{{item.id}}">
+			<ion-item class="mam bg-1 border border--3 pam brm ng-isolate-scope" ng-repeat="item in activities" ng-href="#/activity/view/{{item.id}}">
 				{{item.title}}
 			</ion-item>
 		</ion-list>
-		<div class="phm ng-isolate-scope" label="Load More..." ng-if="!noMoreItemsAvailable">
+		<!--div class="phm ng-isolate-scope" label="Load More..." ng-if="!noMoreItemsAvailable">
                <div class="size-fill">
 	            <button class="btn bg-secondary-btn btn--secondary pvs size-full brm border border--3" ng-click="loadMore()">
 	                <span class="text-color-4 f3 fw-semibold ng-binding">Load more...</span>
 	            </button>
 	        </div>
-	    </div>
+	    </div-->
 	</ion-content>
 </ion-view>

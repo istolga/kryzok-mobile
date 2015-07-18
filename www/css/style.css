@@ -4486,7 +4486,7 @@ input:focus, button:focus {
         </label>
         <input type="text"
                name="default"
-               value="http://www.salesforce.com"
+               value="any"
                class="size-full phs ht-30 input input--header-secondary input--ph-1 input--focus-1">
       </div>
     </header>
@@ -4848,7 +4848,7 @@ input:focus, button:focus {
 
 ## Lookup
 
-<p class="component-description">Lookups allow the user to search for a Salesforce record to populate the field. They can either encompass only a single object type or can ask the user to pick an object type before allowing the user to search for a record.</p>
+<p class="component-description">Lookups allow the user to search for a  record to populate the field. They can either encompass only a single object type or can ask the user to pick an object type before allowing the user to search for a record.</p>
 <hr class="man pan hr hr-1">
 
 <p><span class="component-subtype">Default</span></p>
@@ -5402,7 +5402,7 @@ input:focus, button:focus {
             <li id="search" class="bg-4 pam">
               <a href="javascript:void(0)" class="size-full pas brm bg-5 active--search">
                 <span class="mrs text-color-5 opacity-40 f6 icon-utility-search"></span>
-                <span class="text-color-5 opacity-40 f4">Search Salesforce</span>
+                <span class="text-color-5 opacity-40 f4">Search Kryzok</span>
               </a>
             </li>
             <li class="size-full bg-4 border-top border--6">
@@ -5769,7 +5769,7 @@ input:focus, button:focus {
       <label class="icon-utility-search pos-abs text-color-3 label--search">
         <span class="tha">Search</span>
       </label>
-      <input type="text" name="default" placeholder="Search Salesforce" class="size-full plx prm pvs input input--default input--ph-1 input--focus-1">
+      <input type="text" name="default" placeholder="Search Kryzok" class="size-full plx prm pvs input input--default input--ph-1 input--focus-1">
     </div>
 
 */
@@ -7303,7 +7303,6 @@ body {
    ========================================================================== */
 /*
  * Your CSS goes here. It is included at the bottom of
- * ./src/sass/salesforce1.scss
  *
 */
 /*# sourceMappingURL=styles.css.map */

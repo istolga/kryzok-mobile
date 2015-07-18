@@ -2,74 +2,169 @@
     'use strict';
 
     var searchModule = angular.module('kryzok.search', []);
-    searchModule.factory("SearchService", function($http, EndpointService) {
+    searchModule.factory("SearchService", function($q, $http, EndpointService) {
         return {
             doSearch : function(params) {
                 console.log(params);
-                return $http({
+                /*return $http({
                     url : EndpointService.SEARCH_ACTIVITY_URI,
                     method : 'GET',
                     params : params,
                     headers : {
                         "Accept" : "application/json",
-                        'x-ddc-client-id' : MOBILE_CLIENT.ID
+                        'x-ddc-client-id' : MOBILE_CLIENT.CLIENT_ID
                     },
                     //TODO need to do it as promise as value doesn't give any status code, but at least go to error flow and hide loading image
                     timeout:3000
+                });*/
+
+                var dataExample = {
+                    "totalHits": 100, "activities": [
+                        {
+                            "id": "5590fff87aaba93d6be5fa72",
+                            "url": "https://activityhero.com/biz/56024-encore-lacrosse-burlingame-ca",
+                            "title": "Encore Lacrosse",
+                            "body": "Encore Brand Lacrosse provides the opportunity to all people to experience the inspirations",
+                            "category": null,
+                            "city": null,
+                            "state": null,
+                            "zip": null,
+                            "streetAddress": null,
+                            "createDate": 1435566072086,
+                            "updateDate": 1435566072086
+                        },
+
+                        {
+                            "id": "5590fff87aaba93d6bsdf34",
+                            "url": "https://activityhero.com/biz/56024-encore-lacrosse-burlingame-ca",
+                            "title": "Soccer",
+                            "body": "Encore Brand Lacrosse provides the opportunity to all people to experience the inspirations",
+                            "category": null,
+                            "city": null,
+                            "state": null,
+                            "zip": null,
+                            "streetAddress": null,
+                            "createDate": 1435566072087,
+                            "updateDate": 1435566072087
+                        },
+
+                        {
+                            "id": "5590fff87aabaddddbe5fa66",
+                            "url": "https://activityhero.com/biz/56024-encore-lacrosse-burlingame-ca",
+                            "title": "Basketball",
+                            "body": "Encore Brand Lacrosse provides the opportunity to all people to experience the inspirations",
+                            "category": null,
+                            "city": null,
+                            "state": null,
+                            "zip": null,
+                            "streetAddress": null,
+                            "createDate": 1435567573981,
+                            "updateDate": 1435567573981
+                        },
+
+                        {
+                            "id": "5590fff87aaba93d6b56743",
+                            "url": "https://activityhero.com/biz/56024-encore-lacrosse-burlingame-ca",
+                            "title": "Football",
+                            "body": "Encore Brand Lacrosse provides the opportunity to all people to experience the inspirations",
+                            "category": null,
+                            "city": null,
+                            "state": null,
+                            "zip": null,
+                            "streetAddress": null,
+                            "createDate": 1435567573983,
+                            "updateDate": 1435567573983
+                        },
+
+                        {
+                            "id": "5590fff87aaba93d6be8888",
+                            "url": "https://activityhero.com/biz/56024-encore-lacrosse-burlingame-ca",
+                            "title": "Swimming",
+                            "body": "Encore Brand Lacrosse provides the opportunity to all people to experience the inspirations",
+                            "category": null,
+                            "city": null,
+                            "state": null,
+                            "zip": null,
+                            "streetAddress": null,
+                            "createDate": 1435567675381,
+                            "updateDate": 1435567675381
+                        },
+
+                        {
+                            "id": "5590fff87aaba93d6be98769",
+                            "url": "https://activityhero.com/biz/56024-encore-lacrosse-burlingame-ca",
+                            "title": "Gymnastics",
+                            "body": "Encore Brand Lacrosse provides the opportunity to all people to experience the inspirations",
+                            "category": null,
+                            "city": null,
+                            "state": null,
+                            "zip": null,
+                            "streetAddress": null,
+                            "createDate": 1435567675382,
+                            "updateDate": 1435567675382
+                        }
+                    ]
+                };
+                return $q(function (resolve, reject) {
+                    resolve({"data": dataExample, "status": 200});
                 });
             }
         }
     });
 
     searchModule.service('QueryResult', function() {
-        this.content = [];
-        this.size = 0;
-        this.totalHits = 0;
-        this.searchInfo = {};
+        var that = this;
 
-        this.create = function(records, totalHits, searchInfo) {
-            if (totalHits !== 0) {
+        that.content = [];
+        that.size = 0;
+        that.totalHits = 0;
+        that.searchInfo = {};
+
+        that.create = function(records, _totalHits, _searchInfo) {
+            if (_totalHits !== 0) {
+                console.log("records: " + records);
                 for (var i = 0; i < records.length; ++i) {
                     var record = records[i];
-                    this.content.push(record);
+                    that.content.push(record);
                 }
 
-                this.totalHits = totalHits;
-                this.size += records.length;
+                that.totalHits = _totalHits;
+                that.size += records.length;
+                console.log("size: " + that.size);
             } else {
-                this.content = [];
-                this.totalHits = 0;
-                this.size += 0;
+                that.content = [];
+                that.totalHits = 0;
+                that.size += 0;
             }
 
-            this.searchInfo = searchInfo;
+            that.searchInfo = _searchInfo;
         };
 
-        this.getRecordById = function(jigsawId) {
+        that.getRecordById = function(_recordId) {
             for (var item in this.content) {
-                if (this.content[item].contactId === Number(jigsawId)) {
-                    return this.content[item];
+                if (that.content[item].id === Number(_recordId)) {
+                    return that.content[item];
                 }
             }
 
             return null;
-        }
+        };
 
-        this.setRecordById = function(jigsawId, record) {
-        var item = null;
-            for (var item in this.content) {
-                if (this.content[item].contactId === Number(jigsawId)) {
-                    this.content[item] = record;
+        that.setRecordById = function (_recordId, record) {
+            var item = null;
+            for (var item in that.content) {
+                if (that.content[item].id === Number(_recordId)) {
+                    that.content[item] = record;
                     return;
                 }
             }
-        }
+        };
 
-        this.clear = function() {
-            this.content = [];
-            this.size = 0;
-            this.totalHits = 0;
-            this.searchInfo = {};
+        that.clear = function() {
+            that.content = [];
+            that.size = 0;
+            that.totalHits = 0;
+            that.searchInfo = {};
         }
     });
 
@@ -80,37 +175,79 @@
     });
 
     searchModule.service('Filters', function($rootScope) {
-        this.groups = [];
+        var that = this;
 
-        this.clear = function() {
-            if (this.groups.length === 0) {
+        that.groups = [];
+
+        that.clear = function() {
+            if (that.groups.length === 0) {
                 return;
             }
 
-            this.groups = [];
+            that.groups = [];
             $rootScope.$broadcast("clearFilter");
         };
     });
 
-    searchModule.controller('SearchController', function($scope, $state, $rootScope, $stateParams, 
+    searchModule.controller('SearchController', function($scope, $state, $stateParams,
             $ionicHistory, $ionicLoading, $ionicScrollDelegate, $ionicModal, $ionicListDelegate, 
             SearchService, QueryResult, Filters, Pagination) {
+
+        var that = this;
+
         $scope.searchInfo = {freeText: $stateParams.keyword, ownedOnly: $stateParams.owned};
         $scope.content = [];
-        $rootScope.contacts = [];
+        $scope.activities = [];
+        $scope.noMoreItemsAvailable = true;
+        $scope.modal = null;
+
+        that.currentTimeout = null;
+
+        $ionicModal.fromTemplateUrl('components/search/_filter.html', {
+            scope : $scope,
+            animation : 'slide-in-up'
+        }).then(function(modal) {
+            $scope.modal = modal;
+        });
 
         $scope.myGoBack = function () {
-    		$ionicHistory.goBack();
+            $ionicHistory.goBack();
         };
-        
+
+        $scope.keywordsChanged = function() {
+            $scope.noMoreItemsAvailable = true;
+            $ionicScrollDelegate.scrollTop();
+
+            that.doSearch($scope.searchInfo, true);
+        };
+
+        $scope.addNewActivity = function() {
+            $state.go('app.activity_add');
+        };
+
+        $scope.showFilters = function() {
+            that.openModal();
+        };
+
+        $scope.closeModal = function() {
+            $scope.modal.hide();
+        };
+
+        $scope.loadMore = function() {
+            var filters = {};
+            Pagination.offset += Pagination.pageSize;
+
+            that.doSearch($scope.searchInfo);
+        };
+
         $scope.doSearch = function(params, reset) {
             console.log("doSearch");
             // TODO: enable
             // cordova.plugins.Keyboard.close();
-            $scope.showLoading();
+            that.showLoading();
 
             if (reset) {
-                $scope.reset();
+                that.reset();
             }
 
             params['offset'] = Pagination.offset;
@@ -121,7 +258,7 @@
                     if(success.data && success.status && success.status === 200) {
                         console.log("[SearchController], success");
                         var data = success.data;
-                        var records = data.contacts
+                        var records = data.activities;
 
                         QueryResult.create(records, data.totalHits, params);
 
@@ -129,10 +266,10 @@
                             for (var i = 0; i < records.length; ++i) {
                                 var record = records[i];
                                 $scope.content.push(record);
-                                $rootScope.contacts.push(record);
+                                $scope.activities.push(record);
 
                             }
-                            $scope.noMoreItemsAvailable = $rootScope.contacts.length >= data.totalHits;
+                            $scope.noMoreItemsAvailable = $scope.activities.length >= data.totalHits;
                         } else {
                             console.log("[SearchController]No data or status != 200, status: " + success.status);
                             $scope.noMoreItemsAvailable = true;
@@ -148,20 +285,7 @@
             );
         };
 
-        var currentTimeout = null;
-
-        $scope.keywordsChanged = function() {
-            $scope.noMoreItemsAvailable = true;
-            $ionicScrollDelegate.scrollTop();
-
-            $scope.doSearch($scope.searchInfo, true);
-        };
-        
-        $scope.addNewContact = function() {
-            $state.go('app.contact_add');
-        };
-
-        $scope.showLoading = function() {
+        that.showLoading = function() {
             $ionicLoading.show({
                 template : 'Loading...',
                 showBackdrop : true,
@@ -170,62 +294,42 @@
             });
         };
 
-        $ionicModal.fromTemplateUrl('components/search/_filter.html', {
-            scope : $scope,
-            animation : 'slide-in-up'
-        }).then(function(modal) {
-            $scope.modal = modal;
-        });
-
-        $scope.showFilers = function() {
-            $scope.openModal();
-        }
-
-        $scope.openModal = function() {
+        that.openModal = function() {
             $scope.modal.show();
         };
 
-        $scope.closeModal = function() {
-            $scope.modal.hide();
-        };
-
-        $scope.noMoreItemsAvailable = true;
-
-        $scope.loadMore = function() {
-            var filters = {};
-            Pagination.offset += Pagination.pageSize;
-
-            $scope.doSearch($scope.searchInfo);
-        };
-
-        $scope.reset = function() {
+        that.reset = function() {
             Pagination.offset = 0;
             Pagination.pageSize = SEARCH.PAGE_SIZE;
             $scope.content = [];
-            $rootScope.contacts = [];
+            $scope.activities = [];
             QueryResult.clear();
         };
 
-        $scope.init = function() {
+        that.init = function() {
             console.log("[SearchController]scope init, history forward view: " + $ionicHistory.forwardView());
             console.log("[SearchController]ionic history: " + $ionicHistory);
             if ($ionicHistory.forwardView() !== null) {
                 $scope.content = QueryResult.content;
-                $rootScope.contacts = QueryResult.content;
+                $scope.activities = QueryResult.content;
                 $scope.searchInfo = QueryResult.searchInfo;
 
                 return;
             }
 
-            $scope.reset();
+            that.reset();
             $scope.doSearch($scope.searchInfo);
-        }
+        };
 
-        $scope.init();
+        that.init();
     });
 
-    searchModule.controller('FilterCtrl', function($scope, $rootScope,
+    searchModule.controller('FilterCtrl', function($scope,
             SearchService, Filters, QueryResult) {
+        var that = this;
+
+        $scope.groups = Filters.groups;
+
         var groups = {};
         groups["activity"] = [ {
             name : "Hide My Owned Activities",
@@ -241,7 +345,7 @@
             type: "string"
         } ];
 
-        $scope.groups = Filters.groups;
+
         
         $scope.$on('clearFilter', function() {
             $scope.groups = Filters.groups;
@@ -271,11 +375,11 @@
             $scope.closeModal();
 
             $scope.doSearch($scope.searchInfo, true);
-        }
+        };
 
         $scope.toggleGroup = function(name) {
             $scope.activeGroupName = name;
-        }
+        };
 
         $scope.isActiveGroup = function(name) {
             if (name === $scope.activeGroupName) {
@@ -289,12 +393,12 @@
             }
 
             return false;
-        }
+        };
 
         $scope.addSearchFilter = function(group, filter) {
             group.filters.push(filter);
             console.log("[FilterController] filter groups: " + Filters.groups);
-        }
+        };
 
         $scope.deleteFilter = function(group, filterkeyword) {
             for (var i = 0; i < group.filters.length; ++i) {
@@ -304,9 +408,9 @@
                     break;
                 }
             }
-        }
+        };
 
-        $scope.init = function() {
+        that.init = function() {
             console.log("[FilterController]scope init");
             console.log("[FilterController]filter groups: " + Filters.groups);
             if (Filters.groups.length !== 0) {
@@ -315,10 +419,10 @@
                 return;
             }
 
-            initFilters();
+            that.initFilters();
         };
 
-        var initFilters = function() {
+        that.initFilters = function() {
             for (var i = 0; i < groups["activity"].length; ++i) {
                 $scope.groups[i] = {
                     name : groups["activity"][i].name,
@@ -330,6 +434,6 @@
             }
         };
 
-        $scope.init();
+        that.init();
     });
 })();
