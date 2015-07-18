@@ -1,0 +1,46 @@
+	<ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-stable custom-nav">
+            <ion-nav-buttons side="left">
+                <div title="Menu" class="pts plm" menu-toggle="left">
+                    <span class="icon-utility-rows active--icon-1 text-color-5 f1"></span>
+                </div>
+            </ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+
+    <ion-side-menu side="left" class="border--6 bg-5">
+        <ion-content>
+            <ion-list class="list-plain pan man f3 text-color-5">
+                <ion-item nav-clear menu-close href="#" ng-click="calendar()" class="size-full bg-4 border-top border--6">
+                    <div class="pos-rel size-full plm ptm pbm clear">
+                        <span class="fl icon icon--custom-96 bgs-100 mrm sq-30 brs"></span>
+                        <span class="fl f3 text-color-5 db lh-30">Calendar</span>
+                        <span class="pos-abs corner-tr mrl lh-58 icon-utility-rows text-color-13"></span>
+                    </div>
+                </ion-item>
+                <ion-item nav-clear menu-close href="#" ng-click="search()" class="size-full bg-4 border-top border--6">
+                    <div class="pos-rel size-full plm ptm pbm clear">
+                        <span class="fl icon icon--custom-39 bgs-100 mrm sq-30 brs"></span>
+                        <span class="fl f3 text-color-5 db lh-30">Search</span>
+                        <span class="pos-abs corner-tr mrl lh-58 icon-utility-rows text-color-13"></span>
+                    </div>
+                </ion-item>
+                <ion-item nav-clear menu-close href="#" ng-click="about()" class="size-full bg-4 border-top border--6">
+                    <div class="pos-rel size-full plm ptm pbm clear">
+                        <span class="fl icon icon--custom-16 bgs-100 mrm sq-30 brs"></span>
+                        <span class="fl f3 text-color-5 db lh-30">About Us</span>
+                        <span class="pos-abs corner-tr mrl lh-58 icon-utility-rows text-color-13"></span>
+                    </div>
+                </ion-item>
+                <ion-item nav-clear menu-close href="#" ng-click="logout()" class="size-full bg-4 border-top border--6">
+                    <div href="javascript:void(0)" class="size-full pam" title="Logout">
+                        <span class="dib sq-30 fl tc ptxs mrm f2 text-color-5 opacity-40 icon-utility-logout"></span>
+                        <span class="f3 text-color-5 lh-30">Logout</span>
+                    </div>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

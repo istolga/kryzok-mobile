@@ -1,0 +1,45 @@
+<ion-view>
+    <ion-nav-buttons side="left">
+        <div title="Menu" class="pts plm" menu-toggle="left">
+            <span class="icon-utility-rows active--icon-1 text-color-5 f1"></span>
+        </div>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        <span class="text-color-5 dib lh-44 fw-semibold f2 ng-binding">Calendar</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <div title="Search" class="pts prm" ng-click="search()">
+            <span class="icon-utility-add active--icon-1 text-color-5 f1"></span>
+        </div>
+    </ion-nav-buttons>
+
+    <ion-content class="calendar-page" has-header="true">
+        <div ng-repeat="item in schedules"> <!--todo use ng-collection repeat to only fit in the screen-->
+            <div class="kryzok-calendar-date">
+                {{item.date | prettyDate}}
+            </div>
+            <div class="list list-left-editing">
+            <ion-item ng-repeat="schedule in item.schedules" class="item-thumbnail-left"
+                      on-tap="viewItem('{{schedule.id}}', '{{item.date}}', '{{schedule.fromTime}}', '{{schedule.toTime}}')">
+                {{schedule.fromTime}} <span class="kryzok-calendar-title">{{schedule.title}}</span>
+                <p class="schedule-options">
+                    <div class="icon-utility-share" ng-click="share('{{schedule.id}}', $event);"></div>
+                    <div class="icon-yelp-share" ng-click="openYelp($event);"></div>
+                </p>
+
+                <!--ion-option-button class="button-positive"
+                                   ng-click="share(item)">
+                    Share
+                </ion-option-button>
+                <ion-option-button class="button-info"
+                                   ng-click="edit(item)">
+                    Edit
+                </ion-option-button-->
+                <!--ion-delete-button class="ion-minus-circled"
+                                   ng-click="delete($index)">
+                </ion-delete-button-->
+            </ion-item>
+        </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,60 @@
+<ion-view>
+    <ion-nav-buttons side="left">
+        <div title="Back" class="pts plm" ng-click="myGoBack()">
+            <span class="icon-utility-back active--icon-1 text-color-5 f1"></span>
+        </div>
+    </ion-nav-buttons>
+    <ion-nav-title>
+    </ion-nav-title>
+    <ion-content class="schedule-page" has-header="true">
+        <div class="list list-left-editing">
+            <ion-item>
+                <div class="scheduleTitle">{{::schedule.title}}</div>
+            </ion-item>
+            <ion-item class="schedule-time-item">
+                <div class="scheduleTime">
+                    <div class="startTime">{{scheduleDate | prettyDate}} <span class="time">{{fromTime}}</span></div>
+                    <div class="toTime">{{scheduleDate | prettyDate}} <span class="time">{{toTime}}</span></div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="website">
+                    <div class="icon"></div>
+                    <div class="text">{{::schedule.website}}</div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="location">
+                    <div class="icon"></div>
+                    <div class="text">
+                        <p class="name">{{::schedule.location.name}}</p>
+
+                        <p>{{::schedule.location.address}} {{::schedule.location.city}}
+                            {{::schedule.location.state_province}}</p>
+
+                        <p>
+                            <a ng-href="{{::mapsUrl}}" ng-click="$event.stopPropagation()">
+                                Open in Maps App
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="phone">
+                    <div class="icon"></div>
+                    <div class="text">{{::schedule.phones.primary}}</div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="email">
+                    <div class="icon"></div>
+                    <div class="text">{{::schedule.emails.primary}}</div>
+                </div>
+            </ion-item>
+            <ion-item class="item-text-wrap">
+                <p class="desc">{{::schedule.desc}}</p>
+            </ion-item>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,170 @@
+.kryzok-calendar-date {
+  margin-bottom: 10px;
+}
+.kryzok-calendar-title {
+  font-weight: bold;
+}
+.calendar-page .item {
+  border: none;
+  min-height: 30px;
+  margin-bottom: 20px;
+}
+.calendar-page .item-content {
+  width: 310px;
+  min-height: 20px;
+
+  padding-left: 10px;
+  margin-left: 30px;
+
+  background-color: white;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #c5c5c5;
+  -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+  -moz-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.calendar-page .icon-yelp-share {
+  background-image: url("assets/icons/custom/yelp_logo_40x20.png");
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 20px;
+  margin-left: 30px;
+  float: left;
+}
+.calendar-page .icon-utility-share {
+  float: left;
+  margin-left: 5px;
+}
+.calendar-page .schedule-options {
+  padding-top: 20px;
+}
+
+.talkbubble {
+  padding-left: 10px;
+  margin-left: 30px;
+
+  width: 120px;
+  height: 80px;
+  background: #e5e5e5;
+  position: relative;
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  border-radius:         10px;
+}
+.talkbubble:before {
+  content:"";
+  position: absolute;
+  right: 100%;
+  top: 26px;
+  width: 0;
+  height: 0;
+  border-top: 13px solid transparent;
+  border-right: 26px solid #e5e5e5;
+  border-bottom: 13px solid transparent;
+}
+
+.schedule-time-item {
+  padding: 0px;
+}
+.scheduleTime {
+  overflow: hidden;
+}
+.scheduleTime div {
+  float: left;
+  padding: 20px 0px 20px 40px;
+  /*background: #e5e5e5;*/
+  position: relative;
+  display: block;
+  float: left;
+}
+.scheduleTime .startTime {
+  padding-left: 15px;
+}
+.scheduleTime .time {
+  font-weight: bold;
+  display: block;
+}
+
+.startTime:after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-left: 30px solid white; /*#e5e5e5*/;
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  left: 100%;
+  z-index: 2;
+}
+.startTime:before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-left: 30px solid #e5e5e5;
+  position: absolute;
+  top: 50%;
+  margin-top: -50px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 1;
+}
+
+.toTime2:after {
+  content: "";
+  width: 50px;
+  height: 100px;
+  /*background-color: #e5e5e5;*/
+  display: block;
+  position: absolute;
+  left: 100%;
+  top: 0%;
+  z-index: 2;
+}
+
+.scheduleTitle {
+  font-weight: bold;
+}
+
+.schedule-page .icon {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  margin-right: 10px;
+  float: left;
+}
+.schedule-page .text {
+  float: left;
+}
+
+.schedule-page .website .icon {
+  background-image: url("assets/icons/custom/home-icon.png");
+  background-repeat: no-repeat;
+}
+
+.schedule-page .location .icon {
+  background-image: url("assets/icons/custom/location-icon.png");
+  background-repeat: no-repeat;
+}
+
+.schedule-page .location .name {
+  font-weight: bold;
+}
+
+.schedule-page .phone .icon {
+  background-image: url("assets/icons/custom/phone-icon.png");
+  background-repeat: no-repeat;
+}
+
+.schedule-page .email .icon {
+  background-image: url("assets/icons/custom/email-icon.png");
+  background-repeat: no-repeat;
+}

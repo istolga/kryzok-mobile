@@ -1,0 +1,53 @@
+<ion-modal-view ng-controller="FilterCtrl">
+	 <ion-header-bar class="bar bar-header custom-nav">
+		<div class="flag--body grid--center">
+			<div title="Cancel" class="btn--header-primary brm bg-global-header-btn fl mtxs mls phm ht-30 " ng-click="cancelFilter()">
+				<span class="text-color-5 lh-30 f6 ng-binding">Cancel</span>
+			</div>
+			<div title="Apply" class="btn--header-primary brm bg-global-header-btn ht-30 phm pos-rel fr mtxs mrs" ng-click="applyFilter()">
+				<span class="text-color-5 lh-30 f6 ng-binding">Apply</span>
+			</div>
+			<span class="text-color-5 dib lh-44 fw-semibold f1 ng-binding">Filters</span>
+		</div>
+	</ion-header-bar>
+	
+	<ion-content has-header="true">
+		<ion-list>
+			<div ng-repeat="group in groups" >
+				<div ng-switch on="group.type">
+					<!-- boolean -->
+					<ion-item ng-switch-when="boolean">
+						<label>
+							<input type="checkbox" class="checkbox checkbox--default checkbox--states-1 brm mrs bg-secondary-btn sq-22 a-mid dib" style="width: 22px;"  ng-model="group.value" width="20">
+						    <span class="f4 text-color-1 ng-binding" for="checkbox-1a">&nbsp;{{group.name}}</span>
+					    </label>
+					</ion-item>
+					<!-- string -->
+					<ion-item ng-switch-when="string" class="item filter-outer-list" ng-click="toggleGroup(group.name)" ng-class="{active: isActiveGroup(group.name)}">
+						<i class="icon" ng-class="isActiveGroup(group.name) ? 'ion-minus' : 'ion-plus'"></i>
+						{{group.name}}
+						<div ng-show="isActiveGroup(group.name)">
+							<ion-item class="item-accordion item filter-inner-list">
+								<div class="bar item-input-inset search-filter">
+									<div class="item-input-wrapper search-filter-input">
+										<i class="icon ion-ios7-search placeholder-icon"></i>
+										<input type="text" ng-model="input.filterkeyword" placeholder="Add filter ...">
+									</div>
+									<button class="button button-clear" ng-click="addSearchFilter(group, input.filterkeyword)">
+										<span class="add-filter-button">Add</span>
+									</button>
+								</div>
+							</ion-item>
+			
+							<ion-item class="item-accordion" ng-repeat="filter in group.filters track by $index">
+								<div class="item-icon-right">
+									{{filter}} <i class="icon ion-ios7-close-outline delete-filter-icon" ng-click="deleteFilter(group, filter)"></i>
+								</div>
+							</ion-item>
+						</div>
+					</ion-item>
+				</div>
+			</div>
+		</ion-list>
+	</ion-content>
+</ion-modal-view>

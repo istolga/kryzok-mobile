@@ -1,0 +1,34 @@
+<ion-view> 
+   	<ion-nav-buttons side="left">
+		<div title="Back" class="pts plm" ng-click="myGoBack()">
+			<span class="icon-utility-back active--icon-1 text-color-5 f1"></span>
+		</div>
+	</ion-nav-buttons>
+	<ion-nav-title>
+		<div class="pos-rel size-fill pas search-activities">
+			<input ng-model="searchInfo.freeText" ng-enter="keywordsChanged()" type="text" name="default" placeholder="Search Activities" class="size-full phs input input--header-primary input--ph-2 input--focus-2" onClick="this.setSelectionRange(0, this.value.length)">
+ 		</div>
+	</ion-nav-title>
+	<ion-nav-buttons side="right">
+		<div title="Filters" class="pts prm" ng-click="showFilers()">
+			<span class="icon-utility-filter active--icon-1 text-color-5 f1"></span>
+		</div>
+	</ion-nav-buttons>
+	
+	<ion-content class="search-page" has-header="true">
+		<div class="cb"></div>
+		<h1 class="text-color-1 f2 mam">Activities</h1>
+		<ion-list> 
+			<ion-item class="mam bg-1 border border--3 pam brm ng-isolate-scope" ng-repeat="item in activities" ng-href="#/activit/view/{{item.id}}">
+				{{item.title}}
+			</ion-item>
+		</ion-list>
+		<div class="phm ng-isolate-scope" label="Load More..." ng-if="!noMoreItemsAvailable">
+               <div class="size-fill">
+	            <button class="btn bg-secondary-btn btn--secondary pvs size-full brm border border--3" ng-click="loadMore()">
+	                <span class="text-color-4 f3 fw-semibold ng-binding">Load more...</span>
+	            </button>
+	        </div>
+	    </div>
+	</ion-content>
+</ion-view>
